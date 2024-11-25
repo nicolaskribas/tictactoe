@@ -75,12 +75,12 @@ X wins
 
 `./velha < test_9.txt`
 ```
-OOOO
+OOOX
 ..XO
 OX..
 X...
 
-O wins
+X wins
 ```
 
 `./velha < test_10.txt`

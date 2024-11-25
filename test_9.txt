@@ -1,5 +1,5 @@
 4
-O O O O
+O O O X
 . . X O
 O X . .
 X . . .
