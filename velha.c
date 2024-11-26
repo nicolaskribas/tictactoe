@@ -1,11 +1,11 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define MAX_DIMENSION 10
 #define EMPTY_MARKER '.'
 
 int dimension;
-char game[MAX_DIMENSION][MAX_DIMENSION];
+char *game;
 
 bool in(int i, int j) {
   return 0 <= i && i < dimension && 0 <= j && j < dimension;
@@ -16,10 +16,10 @@ void check(int i, int j, int i_step, int j_step) {
   char last_seen = '\0';
 
   while (in(i, j)) {
-    if (game[i][j] != last_seen) {
+    if (game[i * dimension + j] != last_seen) {
       count = 0;
     }
-    last_seen = game[i][j];
+    last_seen = game[i * dimension + j];
     count++;
 
     i += i_step;
@@ -34,19 +34,17 @@ void check(int i, int j, int i_step, int j_step) {
 int main(int argc, char *argv[]) {
   // receive the game state from stdin
   scanf("%d", &dimension);
-  if (dimension > MAX_DIMENSION) {
-    return 1;
-  }
+  game = malloc(dimension * dimension * sizeof(char));
   for (int i = 0; i < dimension; i++) {
     for (int j = 0; j < dimension; j++) {
-      scanf(" %c ", &game[i][j]);
+      scanf(" %c ", &game[i * dimension + j]);
     }
   }
 
   // print game state
   for (int i = 0; i < dimension; i++) {
     for (int j = 0; j < dimension; j++) {
-      printf("%c", game[i][j]);
+      printf("%c", game[i * dimension + j]);
     }
     printf("\n");
   }
